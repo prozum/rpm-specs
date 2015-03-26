@@ -7,19 +7,14 @@
 Name:    qyoto 
 Summary: .NET/Mono bindings for the Qt libraries 
 Version: 4.14.3
-Release: 2%{?dist}
+Release: 3%{?dist}
 
 # libqyoto LGPLv2+, mono bindings GPLv2+
 License: LGPLv2+ and GPLv2+
 URL:     http://techbase.kde.org/Development/Languages/Qyoto
-#URL:     https://projects.kde.org/projects/kde/kdebindings/csharp/qyoto
-%global revision %(echo %{version} | cut -d. -f3)
-%if %{revision} >= 50
-%global stable unstable
-%else
-%global stable stable
-%endif
-Source0: http://download.kde.org/%{stable}/%{version}/src/%{name}-%{version}.tar.xz
+
+%global commit 993b566af287cd94ab72193a0ab36bf7f8b20c0b
+Source0: https://github.com/nimoov/%{name}/archive/%{commit}/%{name}-%{commit}.tar.gz
 
 BuildRequires: cmake
 BuildRequires: pkgconfig(mono)
@@ -53,7 +48,7 @@ for the Qt libraries.
 
 
 %prep
-%setup -q
+%setup -qn %{name}-%{commit}
 
 
 %build
@@ -108,6 +103,9 @@ make install/fast DESTDIR=%{buildroot} -C %{_target_platform}
 
 
 %changelog
+* Thu Mar 26 2015 Niclas Moeslund Overby <nimoov@prozum.dk> 4.14.3-3
+- change source
+
 * Thu Jan 08 2015 Rex Dieter <rdieter@fedoraproject.org> 4.14.3-2
 - drop el6/cmake28 hack
 
