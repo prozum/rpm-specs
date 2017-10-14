@@ -11,6 +11,7 @@ URL: https://github.com/CrimsonAS/gtkplatform
 
 Source0: https://github.com/CrimsonAS/%{name}/archive/%{commit}/%{name}-%{commit}.tar.gz
 
+BuildRequires: systemd-devel
 BuildRequires: gtk3-devel
 BuildRequires: libnotify-devel
 BuildRequires: qt5-devel
